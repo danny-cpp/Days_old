@@ -18,5 +18,9 @@
         <li> If it is earlier than October 15, 1582; it is not supported. Since we use <a href="https://en.wikipedia.org/wiki/Gregorian_calendar">Gregorian Calendar</a>. </li>
         <li> Invalid date is passed, it must either throw exception or recognize the error.
   </ul>
-  
+  <p>
+    We have:</br>
+    <i>Number of days old = Days left of birth year + Days between birth year and now + The day of this year</i></br></br>
+    Details will be in the code itself
+  </p>
   
