@@ -69,10 +69,32 @@ public class CountDays {
         return total_day;
     }
 
-    public static void main(String[] args) {
-        Calendar test = Calendar.getInstance();
-        test.set(2020, 0, 31);
+    /**
+     * Count all the days between 2 dates, including the end point days
+     *
+     * @return Total number of days
+     */
+    public int countDays() {
+        int start_year = start.get(Calendar.YEAR);
+        int end_year = end.get(Calendar.YEAR);
 
-        System.out.println(CountDays.daysLeft(test));
+        // If they are the same year we find days-left difference
+        if (start_year == end_year) {
+            return end.get(Calendar.DAY_OF_YEAR) - start.get(Calendar.DAY_OF_YEAR);
+        }
+
+        // Else we add these up
+        return daysLeft(start) + daysBetween() + end.get(Calendar.DAY_OF_YEAR);
+    }
+
+    public static void main(String[] args) {
+        Calendar begin = Calendar.getInstance();
+        begin.set(2019, 0, 1);
+        Calendar today = Calendar.getInstance();
+        today.set(2019, 0, 1);
+
+        CountDays c = new CountDays(begin, today);
+
+        System.out.println(c.countDays());
     }
 }
