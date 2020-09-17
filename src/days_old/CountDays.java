@@ -10,8 +10,9 @@ import java.util.Calendar;
 public class CountDays {
 
     // The core of this class is 2 calendar object
-    Calendar start = Calendar.getInstance();
-    Calendar end = Calendar.getInstance();
+    Calendar start;
+    Calendar end;
+    int days_counted = 0;
 
     /**
      * Constructor requires 2 date in form of Calendar object
@@ -22,10 +23,15 @@ public class CountDays {
     CountDays(Calendar start, Calendar end) {
         this.start = start;
         this.end = end;
+        this.days_counted = countDaysCache();
+    }
+
+    public int countDays() {
+        return days_counted;
     }
 
     /**
-     * Find the number of days in a year (only valid after  October 15, 1582)
+     * Find the number of days in a year (only valid after October 15, 1582)
      *
      * @param year The year to check
      * @return Either 365, or 366 days
@@ -61,7 +67,6 @@ public class CountDays {
         int total_day = 0;
         int start_year = start.get(Calendar.YEAR);
 
-        int end_year = end.get(Calendar.YEAR);
         for (int i = start_year + 1; i < end.get(Calendar.YEAR); i++) {
             total_day += getYearsDay(i);
         }
@@ -70,11 +75,15 @@ public class CountDays {
     }
 
     /**
-     * Count all the days between 2 dates, including the end point days
+     * Count all the days between 2 dates, including the end point day. This function
+     * actually cannot be called by the user. The output of this function will be cached
+     * and used for error handling.<br><br>
+     *
+     * To access the total days, please use countDays().
      *
      * @return Total number of days
      */
-    public int countDays() {
+    private int countDaysCache() {
         int start_year = start.get(Calendar.YEAR);
         int end_year = end.get(Calendar.YEAR);
 
@@ -95,6 +104,6 @@ public class CountDays {
 
         CountDays c = new CountDays(begin, today);
 
-        System.out.println(c.countDays());
+        System.out.println(c.countDaysCache());
     }
 }
