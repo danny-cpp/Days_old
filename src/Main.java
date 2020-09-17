@@ -6,12 +6,28 @@ import days_old.*;
 
 public class Main {
 
-    public static void main(String[] args) {
-        System.out.println("hello!");
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, 2020);
-        System.out.println("day of year is: " + cal.getActualMaximum(Calendar.DAY_OF_YEAR));
+    public static int divByZero(int d) {
+        return d/0;
+    }
 
+    public static void main(String[] args) throws EndDateExceedsBeginDateException {
+        // int[] myNumbers = {1, 2, 3};
+        // try {
+        //     System.out.println(myNumbers[10]); // error!
+        // }
+        // catch (Exception ArrayIndexOutOfBoundsException) {
+        //     System.out.println("wrong, u fool!");
+        // }
+
+
+        // System.out.println("hello!");
+        // System.out.println(divByZero(10));
+
+        Calendar begin = Calendar.getInstance();
+        begin.set(2019, Calendar.FEBRUARY, 1);
+        Calendar today = Calendar.getInstance();
+        today.set(2019, Calendar.JANUARY, 1);
+        CountDays a = new CountDays(begin, today);
 
     }
 }
