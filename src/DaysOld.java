@@ -8,11 +8,13 @@ import java.util.Calendar;
 /**
  * Assignment 1: Using standard libraries <br />
  * Calculate age in days
+ *
+ * @author Danh Nguyen, ID: 1592873
  */
 public class DaysOld {
 
     /**
-     * Calculate how many days between today and the date, and them out
+     * Calculate how many days between today and the input date and print them out
      * @param birthday      {@code String} The start date
      */
     public static void days(String birthday) {
@@ -62,9 +64,8 @@ public class DaysOld {
     public static void main(String[] args) {
         days("2000-6-15");
         days("3000-1-1");           // This is a wrong birthday
-        days("2001-30-51");
-        // Add your birthday
-        // days("yyyy-MM-dd");
+        days("2001-30-51");         // This is invalid date
+        days("500-12-31");          // This is too early
     }
 
 }

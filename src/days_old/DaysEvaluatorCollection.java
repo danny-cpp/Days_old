@@ -109,15 +109,15 @@ public class DaysEvaluatorCollection {
     }
 
     public static void main(String[] args) {
+        // Internal testing
         Calendar begin = Calendar.getInstance();
-        begin.set(2019, Calendar.JANUARY, 1);
+        begin.set(2020, Calendar.JANUARY, 1);
         Calendar today = Calendar.getInstance();
         today.set(2019, Calendar.FEBRUARY, 2);
 
         DaysEvaluatorCollection c = new DaysEvaluatorCollection(begin, today);
 
         System.out.println(c.countingDays());
-
 
     }
 }
