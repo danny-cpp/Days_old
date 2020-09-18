@@ -9,8 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
- * This class main goal is to find the days difference between 2 date. Come along with that is a string-to-date parser,
- * and an automatic unit tester. The suite contains 3 main functions:
+ * This class main goal is to find the days difference between 2 date.
  */
 public class CountDays extends DaysEvaluatorCollection {
 
