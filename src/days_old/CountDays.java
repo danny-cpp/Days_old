@@ -51,7 +51,7 @@ public class CountDays extends DaysEvaluatorCollection {
     /**
      * Parsing the input string of the following format to a calendar object
      * @param s Input date in the format "yyyy-MM-dd". Date parse must be A.D.
-     * @return
+     * @return Calendar object with the date of the input
      * @throws InvalidDate     Input date does not exist
      * @throws ParseException  Meaningless string
      */
