@@ -16,8 +16,12 @@ public class DaysOld {
      * @param birthday      {@code String} The start date
      */
     public static void days(String birthday) {
+        // Initialize date objects
         Calendar today = Calendar.getInstance();
         Calendar b_day = Calendar.getInstance();
+
+        // Assign date with dateParser. This function will throw exception if date
+        // does not exist or invalid.
         try {
             b_day = CountDays.dateParser(birthday);
         } 
@@ -26,6 +30,7 @@ public class DaysOld {
             return;
         }
 
+        // Printing
         int result;
         String monthString1 = new DateFormatSymbols().getMonths()[b_day.get(Calendar.MONTH)];
         String monthString2 = new DateFormatSymbols().getMonths()[today.get(Calendar.MONTH)];
@@ -34,7 +39,8 @@ public class DaysOld {
         + " " + b_day.get(Calendar.YEAR) + "; today: " + monthString2 + " " + today.get(Calendar.DAY_OF_MONTH)
         + " " + today.get(Calendar.YEAR) + " -- ");
 
-
+        // Calculate the days difference. If beginning date exceeds end date, exception is thrown,
+        // If beginning date is too early (more info in README), exception is thrown
         try {
             CountDays c = new CountDays(b_day, Calendar.getInstance());
             result = c.countingDays();
