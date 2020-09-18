@@ -23,4 +23,18 @@
     <i>Number of days old = Days left of birth year + Days between birth year and now + The day of this year</i></br></br>
     Details will be in the code itself
   </p>
-  
+
+<h3> 2. Instruction </h3>
+  <p>
+    Package include usable class <strong>CountDays</strong> along with 2 methods:
+     <ul>  
+        <li> <strong>countingDays()</strong> </li>
+        <li> <strong>dateParser(String s)</strong> </li>
+    </ul>
+  </p>
+  <p>
+    Create CountDays object via contructor:<br><br>
+    <i>>> CountDays data = new Countdays(Calendar start, Calendar end); </i><br><br>
+    Exception <i>EndDateExceedsBeginDateException</i> is thrown if <i>start</i> is earlier than <i>end</i>. Exception <i>BeginningDateExceedsLimit</i> is also thrown if <i>start</i> is earlier than October 15, 1582.
+    
+  </p>
