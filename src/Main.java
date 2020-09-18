@@ -1,8 +1,7 @@
 import java.util.Calendar;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
+
 import days_old.*;
+import days_old.evaluate_exceptions.*;
 
 public class Main {
 
@@ -10,7 +9,7 @@ public class Main {
         return d/0;
     }
 
-    public static void main(String[] args) throws EndDateExceedsBeginDateException {
+    public static void main(String[] args) throws EndDateExceedsBeginDateException, BeginningDateExceedsLimit {
         // int[] myNumbers = {1, 2, 3};
         // try {
         //     System.out.println(myNumbers[10]); // error!
@@ -24,10 +23,17 @@ public class Main {
         // System.out.println(divByZero(10));
 
         Calendar begin = Calendar.getInstance();
-        begin.set(2019, Calendar.FEBRUARY, 1);
+        begin.set(2019, Calendar.JANUARY, 1);
         Calendar today = Calendar.getInstance();
-        today.set(2019, Calendar.JANUARY, 1);
+        today.set(2019, Calendar.FEBRUARY, 2);
+
         CountDays a = new CountDays(begin, today);
+        System.out.println(a.countingDays());
+
+        String s = "2000-1-1";
+        String[] tokens = s.split("-");
+        System.out.println(tokens[2]);
+        Calendar d = CountDays.dateParser("2000-11");
 
     }
 }

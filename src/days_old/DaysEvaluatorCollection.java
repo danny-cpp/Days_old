@@ -112,5 +112,7 @@ public class DaysEvaluatorCollection {
         DaysEvaluatorCollection c = new DaysEvaluatorCollection(begin, today);
 
         System.out.println(c.countingDays());
+
+
     }
 }
