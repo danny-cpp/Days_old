@@ -91,8 +91,13 @@ public class DaysEvaluatorCollection {
      * @return Total number of days
      */
     protected int countingDaysCache() {
+
         int start_year = start.get(Calendar.YEAR);
         int end_year = end.get(Calendar.YEAR);
+        // If start_year is later than end_year, we don't support this
+        if (start_year > end_year) {
+            return -1;
+        }
 
         // If they are the same year we find days-left difference
         if (start_year == end_year) {

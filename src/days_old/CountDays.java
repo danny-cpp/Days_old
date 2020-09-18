@@ -2,7 +2,10 @@ package days_old;
 
 import days_old.evaluate_exceptions.BeginningDateExceedsLimit;
 import days_old.evaluate_exceptions.EndDateExceedsBeginDateException;
+import days_old.evaluate_exceptions.InvalidDate;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -17,6 +20,8 @@ public class CountDays extends DaysEvaluatorCollection {
      *
      * @param start Calendar start date
      * @param end   Calendar end date
+     * @throws EndDateExceedsBeginDateException End date cannot be earlier than beginning date
+     * @throws BeginningDateExceedsLimit The beginning date cannot be earlier than October 15, 1582
      */
     public CountDays(Calendar start, Calendar end) throws EndDateExceedsBeginDateException, BeginningDateExceedsLimit {
         super(start, end);
@@ -46,15 +51,45 @@ public class CountDays extends DaysEvaluatorCollection {
         return super.countingDays();
     }
 
-
-    public static Calendar dateParser(String s) {
-        // It is extremely important to verify the legitimacy of the input. Is it a meaningful date?
-
-        // If it can't parse to 3 pieces, it fails
+    /**
+     * Parsing the input string of the following format to a calendar object
+     * @param s Input date in the format "yyyy-MM-dd". Date parse must be A.D.
+     * @return
+     * @throws InvalidDate     Input date does not exist
+     * @throws ParseException  Meaningless string
+     */
+    public static Calendar dateParser(String s) throws InvalidDate, ParseException {
+        Calendar cal = Calendar.getInstance();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String[] tmp = s.split("-");
-        if (tmp.length != 3) {
-            System.out.println("invalid");
+
+        // If the user input a negative year
+        try {
+            Integer.parseInt(tmp[0]);
         }
-        return Calendar.getInstance();
+        catch (Exception NumberFormatException) {
+            throw new InvalidDate("Cannot accept B.C. date");
+        }
+
+        // Set the date
+        cal.setTime(sdf.parse(s));
+
+        // Check the validity of the month
+        if (!( Integer.parseInt(tmp[1]) >= 1 && Integer.parseInt(tmp[1]) <= 12)) {
+            throw new InvalidDate("Date does not exist");
+        }
+
+        // Check the validity of the day, remember we can have either 30, 31, 28, or 29 days
+        Calendar cal2 = Calendar.getInstance();
+        cal2.set(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]) - 1, 1);
+        int max_day = cal2.getActualMaximum(Calendar.DAY_OF_MONTH);
+        if (Integer.parseInt(tmp[2]) < 1 || Integer.parseInt(tmp[2]) > max_day) {
+            throw new InvalidDate("Date does not exist");
+        }
+
+        // Finalize
+        cal2.set(Integer.parseInt(tmp[0]), Integer.parseInt(tmp[1]) - 1, Integer.parseInt(tmp[2]));
+
+        return cal2;
     }
 }
