@@ -62,7 +62,7 @@ public class DaysOld {
      * @param args          {@code String[]} Command line arguments
      */
     public static void main(String[] args) {
-        days("2000-6-15");
+        days("2000-6-1");
         days("3000-1-1");           // This is a wrong birthday
         days("2001-30-51");         // This is invalid date
         days("500-12-31");          // This is too early
